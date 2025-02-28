@@ -5,7 +5,7 @@ EPOCHS = 1000
 ALPHA = .01
 BATCH_SIZE = 64
 
-def schotastic_linear_regression():
+def stochastic_linear_regression():
 
     inputs = np.random.uniform(0, 1, size=[1000])
     true_outputs = 12 * inputs - 3

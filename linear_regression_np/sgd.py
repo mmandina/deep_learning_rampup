@@ -1,7 +1,7 @@
 import numpy as np
 import main
 
-def schotastic_linear_regression():
+def stochastic_linear_regression():
 
     inputs = np.random.uniform(0, 1, size=[1000])
     true_outputs = 12 * inputs - 3

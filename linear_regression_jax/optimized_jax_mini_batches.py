@@ -62,7 +62,7 @@ def train(params, X, y, key):
     (params, _), _ = lax.scan(epoch_step, (params, key), jnp.arange(EPOCHS))
     return params
 
-def schotastic_linear_regression():
+def stochastic_linear_regression():
     key = random.PRNGKey(42)
 
     # Generate synthetic dataset: y = 12 * x - 3

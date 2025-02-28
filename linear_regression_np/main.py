@@ -5,9 +5,9 @@ import sgd
 import mini_batches
 def main():
     # batched_gd.linear_regression()
-    # sgd.schotastic_linear_regression()
+    # sgd.stochastic_linear_regression()
     start = time.time()
-    mini_batches.schotastic_linear_regression()
+    mini_batches.stochastic_linear_regression()
     elapsed_time = time.time() - start
     print(f"Execution time: {elapsed_time:.4f} seconds")
 

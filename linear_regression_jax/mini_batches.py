@@ -26,7 +26,7 @@ def process_batches(inputs, true_outputs, m, b):
         m, b = update((m, b), X_batch, y_batch)
     return m, b
 
-def schotastic_linear_regression():
+def stochastic_linear_regression():
     # Start 
     start_time = time.time()
     key = random.PRNGKey(0)
@@ -63,4 +63,4 @@ def schotastic_linear_regression():
   
 
 if __name__ == "__main__":
-    schotastic_linear_regression()
+    stochastic_linear_regression()

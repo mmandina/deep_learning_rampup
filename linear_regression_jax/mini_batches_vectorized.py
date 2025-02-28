@@ -56,7 +56,7 @@ def train(inputs, true_outputs, m, b, key):
         m, b = process_batches(inputs, true_outputs, m, b)
     return m, b, jnp.array(loss_history)
 
-def schotastic_linear_regression():
+def stochastic_linear_regression():
     start_time = time.time()
     key = random.PRNGKey(0)
     key, key_input, key_m, key_b = random.split(key, 4)
@@ -86,4 +86,4 @@ def schotastic_linear_regression():
     # plt.show()
 
 if __name__ == "__main__":
-    schotastic_linear_regression()
+    stochastic_linear_regression()
