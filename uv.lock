@@ -380,6 +380,8 @@ source = { virtual = "." }
 dependencies = [
     { name = "d2l" },
     { name = "jax" },
+    { name = "jaxlib" },
+    { name = "matplotlib" },
     { name = "numpy" },
     { name = "torch" },
     { name = "torchvision" },
@@ -389,6 +391,8 @@ dependencies = [
 requires-dist = [
     { name = "d2l", specifier = "==1.0.3" },
     { name = "jax", specifier = ">=0.4.17" },
+    { name = "jaxlib", specifier = "==0.4.17" },
+    { name = "matplotlib", specifier = ">=3.7.2" },
     { name = "numpy", specifier = ">=1.23.5" },
     { name = "torch", specifier = "==2.0.0" },
     { name = "torchvision", specifier = "==0.15.1" },
@@ -617,6 +621,26 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/48/b4/63d896b5dd5595ccb0a546c3a303191f62160164abeff24f7f5df4f94b91/jax-0.4.17.tar.gz", hash = "sha256:d7508a69e87835f534cb07a2f21d79cc1cb8c4cfdcf7fb010927267ef7355f1d", size = 1416774 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/fb/b5/c1222696f99a51fe932243924d97c8ce89e654a0c571670cbdd3cc6fef83/jax-0.4.17-py3-none-any.whl", hash = "sha256:c3ab72ea2f1c5d8ccf2561e79f6562fb2964629f3e55b3ac1c11c48b64c20336", size = 1652065 },
+]
+
+[[package]]
+name = "jaxlib"
+version = "0.4.17"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ml-dtypes" },
+    { name = "numpy" },
+    { name = "scipy" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/80/d2e891f89c26c4c4b1517018c2197dda5f47585bc6a2c7cceaa43e621ab0/jaxlib-0.4.17-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:6c3524150bd85098f291fac81f73e285f3e095dbbb49751647cc27bed5327a78", size = 81825497 },
+    { url = "https://files.pythonhosted.org/packages/fd/4a/4408ccf267efbf22215c2cadd5e5bb85a05151783d8ac34477d69a5869b1/jaxlib-0.4.17-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:2e0d84a756b47ef6db52a6532b1f242cb8dc9035c102c60075470d65e71f7afb", size = 65805063 },
+    { url = "https://files.pythonhosted.org/packages/65/06/45d78a8fa61f252a6f18b646fa51a4ebba0297b9d44a8435b2ada5b4c8c0/jaxlib-0.4.17-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:e04a0b8bb18ac24e25c15ed03be771815566f118c16f585ffe2e0f75bf7c064d", size = 84879794 },
+    { url = "https://files.pythonhosted.org/packages/d8/99/7e87b0191dfc4b71c331740b3bc2f1347c1634a640da1e40377b3c339dd3/jaxlib-0.4.17-cp311-cp311-win_amd64.whl", hash = "sha256:73173f1aff8d277110d32bdd5e073dc7d50e6618b5567b3bfbc53864b4613439", size = 46584799 },
+    { url = "https://files.pythonhosted.org/packages/d4/11/43274c0c9f597eb1462526977f4f4e0803f3bcd505f1f79411d83c9f4f22/jaxlib-0.4.17-cp312-cp312-macosx_10_14_x86_64.whl", hash = "sha256:909971337aabf5f2724a84c3166cea454b37024908d830695dc6b4ba4440676f", size = 81887862 },
+    { url = "https://files.pythonhosted.org/packages/8a/a8/cceb81bb105d34eb012938ab6f1ed2661817f362f904ae6fc6a222cd6153/jaxlib-0.4.17-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:98d42a402201fd0cb332bad4177b20c942d1acd1487581ee0c3cb5ef6766531a", size = 65820706 },
+    { url = "https://files.pythonhosted.org/packages/ec/92/99c2699b8fcaca0664a58e83a96bd57278b8246e9a7da1b009e77c81f98a/jaxlib-0.4.17-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:593aa9d1c940b9215968878561ad59feee2438386c3868d6524ff4ca730cfdf1", size = 84871101 },
+    { url = "https://files.pythonhosted.org/packages/c9/8a/83d28a81c64d15901ed39e43a64de8e24066150e749aac707e5867c84288/jaxlib-0.4.17-cp312-cp312-win_amd64.whl", hash = "sha256:a4384cc7187f4f10749c6c623211d1a6b55575f921c00af38ff8f05fd3f7ecfd", size = 46599567 },
 ]
 
 [[package]]

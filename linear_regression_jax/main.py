@@ -1,8 +1,10 @@
 import numpy as np
-
+import mini_batches
+import optimized_jax_mini_batches
 
 def main():
-    pass
+    mini_batches.schotastic_linear_regression()
+    # optimized_jax_mini_batches.schotastic_linear_regression()
 
 
 
