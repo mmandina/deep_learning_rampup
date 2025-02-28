@@ -53,13 +53,13 @@ def schotastic_linear_regression():
     print(f"After {EPOCHS} epochs: Loss = {outputs_mse}, m = {m}, b = {b}")
     print(f"Execution time: {elapsed_time:.4f} seconds")
     
-    plt.figure(figsize=(8, 5))
-    plt.plot(loss_history, label="Training Loss")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.title("Training Loss over Epochs")
-    plt.legend()
-    plt.show()
+    # plt.figure(figsize=(8, 5))
+    # plt.plot(loss_history, label="Training Loss")
+    # plt.xlabel("Epoch")
+    # plt.ylabel("Loss")
+    # plt.title("Training Loss over Epochs")
+    # plt.legend()
+    # plt.show()
   
 
 if __name__ == "__main__":
