@@ -5,11 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "d2l==1.0.3",
-    "jax>=0.4.17",
-    "jaxlib==0.4.17",
-    "matplotlib>=3.7.2",
-    "numpy>=1.23.5",
+    "jax>=0.5.1",
+    "jax-metal>=0.1.1",
+    "jaxlib>=0.5.1",
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.3",
     "torch==2.0.0",
     "torchvision==0.15.1",
 ]
