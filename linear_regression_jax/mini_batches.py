@@ -20,7 +20,7 @@ def update(params, X, y):
     new_params = (params[0] - ALPHA * grads[0],
                   params[1] - ALPHA * grads[1])
     return new_params
-
+@jit
 def process_batchs(inputs, true_outputs, outputs):
     # Loop over mini-batches and update parameters using the update function
     for idx in range(0, len(true_outputs), BATCH_SIZE):
@@ -33,7 +33,7 @@ def schotastic_linear_regression():
     # Start 
     start_time = time.time()
     
-    inputs = np.random.uniform(0, 1, size=[1000])
+    inputs = np.random.uniform(0, 1, size=[10000])
     true_outputs = 12 * inputs - 3
     m = np.random.randn()
     b = np.random.randn()
