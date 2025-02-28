@@ -2,24 +2,32 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 import jax.numpy as jnp
-from jax import grad
+from jax import grad,jit
 
 # Hyperparameters
 EPOCHS = 1000
 ALPHA = 0.01
 BATCH_SIZE = 64
 
-def jax_mse(w, b, X, y):
-    preds = jnp.dot(X, w) + b
+def jax_mse(m, b, X, y):
+    preds = jnp.dot(X, m) + b
     return jnp.mean((preds - y) ** 2)
 
-def process_batchs(approximation, true_outputs, inputs, outputs):
+@jit
+def update(params, X, y):
+    # Specify argnums=(0, 1) to compute gradients for both w and b
+    grads = grad(jax_mse, argnums=(0, 1))(params[0], params[1], X, y)
+    new_params = (params[0] - ALPHA * grads[0],
+                  params[1] - ALPHA * grads[1])
+    return new_params
+
+def process_batchs(inputs, true_outputs, outputs):
+    # Loop over mini-batches and update parameters using the update function
     for idx in range(0, len(true_outputs), BATCH_SIZE):
-        batch_true = true_outputs[idx:idx+BATCH_SIZE]
-        grad_loss = grad(jax_mse, argnums=(0, 1))
-        grad_m, grad_b = grad_loss(outputs['m'], outputs['b'], inputs[idx:idx+BATCH_SIZE], batch_true)
-        outputs['m'] -= ALPHA * grad_m
-        outputs['b'] -= ALPHA * grad_b
+        X_batch = inputs[idx:idx+BATCH_SIZE]
+        y_batch = true_outputs[idx:idx+BATCH_SIZE]
+        new_params = update((outputs['m'], outputs['b']), X_batch, y_batch)
+        outputs['m'], outputs['b'] = new_params
 
 def schotastic_linear_regression():
     # Start 
@@ -34,43 +42,30 @@ def schotastic_linear_regression():
     loss_history = []
 
     plt.ion()  # Turn on interactive mode
-    fig, ax = plt.subplots()
-    line, = ax.plot([], [], label="Training Loss")
-    ax.set_xlim(0, EPOCHS)
-    ax.set_ylim(0, 12) 
-    ax.set_xlabel("Epoch")
-    ax.set_ylabel("Loss")
-    ax.set_title("Training Loss over Epochs")
-    ax.legend()
     
     for epoch in range(EPOCHS):
         # Shuffle data
         indices = np.random.permutation(len(inputs))
         inputs = inputs[indices]
         true_outputs = true_outputs[indices]
-        
         # Compute predictions and loss
-        approximation = outputs['m'] * inputs + outputs['b']
         outputs['mse'] = jax_mse(outputs['m'], outputs['b'], inputs, true_outputs)
         loss_history.append(float(outputs['mse']))
-        
         # Update parameters with mini-batch processing
-        process_batchs(approximation, true_outputs, inputs, outputs)
-        
-        # Update plot every 10 epochs (or at the last epoch)
-        if epoch % 10 == 0 or epoch == EPOCHS - 1:
-            line.set_data(range(len(loss_history)), loss_history)
-            ax.relim()
-            ax.autoscale_view()
-            plt.draw()
-            plt.pause(0.01)
+        process_batchs(true_outputs, inputs, outputs)
     
     elapsed_time = time.time() - start_time
     print(f"After {EPOCHS} epochs: Loss = {outputs['mse']}, m = {outputs['m']}, b = {outputs['b']}")
     print(f"Execution time: {elapsed_time:.4f} seconds")
     
-    plt.ioff()  # Turn off interactive mode
-    plt.show()  # Display the final plot
+    plt.figure(figsize=(8, 5))
+    plt.plot(loss_history, label="Training Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("Training Loss over Epochs")
+    plt.legend()
+    plt.show()
+  
 
 if __name__ == "__main__":
     schotastic_linear_regression()
