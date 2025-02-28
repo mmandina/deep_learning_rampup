@@ -40,9 +40,7 @@ def schotastic_linear_regression():
     outputs = {'mse': float('inf'), 'm': m, 'b': b}
     
     loss_history = []
-
-    plt.ion()  # Turn on interactive mode
-    
+ 
     for _ in range(EPOCHS):
         # Shuffle data
         indices = np.random.permutation(len(inputs))
