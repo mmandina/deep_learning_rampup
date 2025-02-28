@@ -2,7 +2,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 import jax.numpy as jnp
-from jax import grad,jit,device_put,devices
+from jax import grad,jit,device_put,devices,random
 # Hyperparameters
 EPOCHS = 1000
 ALPHA = 0.01
@@ -29,17 +29,17 @@ def process_batches(inputs, true_outputs, m, b):
 def schotastic_linear_regression():
     # Start 
     start_time = time.time()
-    
-    inputs = device_put(np.random.uniform(0, 1, size=[1000]).astype(np.float32))
-    true_outputs = device_put((12 * inputs - 3).astype(np.float32))
-    m = device_put(np.float32(np.random.randn()))
-    b = device_put(np.float32(np.random.randn()))
+    key = random.PRNGKey(0)
+    inputs = random.uniform(key, shape=(10000,))
+    true_outputs = jnp.array((12 * inputs - 3))
+    m = random.normal(key, shape=())
+    b = random.normal(key, shape=(), dtype=jnp.float32)
     
     loss_history = []
  
     for _ in range(EPOCHS):
         # Shuffle data
-        indices = np.random.permutation(len(inputs))
+        indices = random.permutation(key, jnp.arange(len(inputs)))
         inputs = inputs[indices]
         true_outputs = true_outputs[indices]
         # Compute predictions and loss
