@@ -2,17 +2,15 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 import jax.numpy as jnp
-from jax import grad,jit
-
+from jax import grad,jit,device_put,devices
 # Hyperparameters
 EPOCHS = 1000
 ALPHA = 0.01
 BATCH_SIZE = 64
-
+@jit
 def jax_mse(m, b, X, y):
     preds = jnp.dot(X, m) + b
     return jnp.mean((preds - y) ** 2)
-
 @jit
 def update(params, X, y):
     # Specify argnums=(0, 1) to compute gradients for both w and b
@@ -32,10 +30,10 @@ def schotastic_linear_regression():
     # Start 
     start_time = time.time()
     
-    inputs = np.random.uniform(0, 1, size=[1000])
-    true_outputs = 12 * inputs - 3
-    m = np.random.randn()
-    b = np.random.randn()
+    inputs = device_put(np.random.uniform(0, 1, size=[1000]).astype(np.float32))
+    true_outputs = device_put((12 * inputs - 3).astype(np.float32))
+    m = device_put(np.float32(np.random.randn()))
+    b = device_put(np.float32(np.random.randn()))
     
     loss_history = []
  
