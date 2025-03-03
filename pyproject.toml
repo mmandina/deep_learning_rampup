@@ -9,6 +9,7 @@ dependencies = [
     "jax-metal==0.0.7",
     "jaxlib==0.4.26",
     "matplotlib>=3.10.1",
+    "mlx>=0.23.1",
     "numpy>=2.2.3",
     "torch==2.0.0",
     "torchvision==0.15.1",
