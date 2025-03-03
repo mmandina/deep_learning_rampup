@@ -49,10 +49,12 @@ def stochastic_linear_regression():
         outputs_mse = mlx_mse(w_guess,b_guess,X_features,true_outputs)
         loss_history.append(outputs_mse.item())
         w_guess, b_guess = train(X_shuffled, y_shuffled, w_guess, b_guess)
-        mx.eval(w_guess)
-        mx.eval(b_guess)
         if epoch % 50 == 0:
             print(f"Epoch {epoch}, Loss: {outputs_mse.item():.6f}")
+    mx.eval(w_guess)
+    mx.eval(b_guess)
+    outputs_mse = mlx_mse(w_guess,b_guess,X_features,true_outputs)
+
     elapsed_time = time.time() - start_time
     print(f"After {EPOCHS} epochs: Loss = {outputs_mse}")
     print(f"Execution time: {elapsed_time:.4f} seconds")
